@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library users</title>
+</head>
+<body>
+<h1>All library users:</h1>
+
+<div th:if="${users.isEmpty()}">No one library user</div>
+
+<!--If list is empty next code will not display anything-->
+<div th:each="user : ${users}">
+    <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getFullName()}"></a>
+</div>
+
+<a style="color: black" href="/users/new">Add new library user</a>
+
+</body>
+</html>
