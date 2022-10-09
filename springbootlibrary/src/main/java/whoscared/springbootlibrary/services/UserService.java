@@ -9,6 +9,7 @@ import whoscared.springbootlibrary.models.User;
 import whoscared.springbootlibrary.repositories.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 //readOnly for all methods without Annotation @Transaction
@@ -59,5 +60,9 @@ public class UserService {
         // lazy loading -> initialize list independently
         Hibernate.initialize(user.getBooks());
         return user.getBooks();
+    }
+
+    public Optional<User> findByLogin (String login){
+        return userRepository.findByLogin(login);
     }
 }

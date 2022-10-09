@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()//disable protection against cross-site request forgery
                 .authorizeRequests()
                 //all user have access for this pages
-                .antMatchers("/auth/login", "/error").permitAll()
+                .antMatchers("/auth/login","/auth/register", "/error").permitAll()
                 //for all another pages have access only auth users
                 .anyRequest().authenticated()
                 //for go to settings for page with login
