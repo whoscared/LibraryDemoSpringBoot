@@ -42,7 +42,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //after success auth
                 .defaultSuccessUrl("/hello", true)
                 //if auth not success
-                .failureUrl("/auth/login?error");
+                .failureUrl("/auth/login?error")
+                .and()
+                //delete user from session, user cookies is deleted (in browser)
+                .logout().logoutUrl("/logout")
+                //success logout -> go to this url
+                .logoutSuccessUrl("/auth/login");
 
     }
 
