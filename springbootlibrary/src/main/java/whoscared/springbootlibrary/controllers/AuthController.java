@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import whoscared.springbootlibrary.models.User;
+import whoscared.springbootlibrary.services.RegistrationService;
 import whoscared.springbootlibrary.services.UserService;
 import whoscared.springbootlibrary.util.UserValidator;
 
@@ -19,12 +20,13 @@ import javax.validation.Valid;
 public class AuthController {
 
     private final UserValidator userValidator;
-    private final UserService userService;
+    private final RegistrationService registrationService;
+
 
     @Autowired
-    public AuthController(UserValidator userValidator, UserService userService) {
+    public AuthController(UserValidator userValidator, RegistrationService registrationService) {
         this.userValidator = userValidator;
-        this.userService = userService;
+        this.registrationService = registrationService;
     }
 
     @GetMapping("/login")
@@ -45,7 +47,7 @@ public class AuthController {
         if (bindingResult.hasErrors()){
             return "/auth/register";
         }
-        userService.save(libraryUser);
+        registrationService.register(libraryUser);
         return "redirect:/auth/login";
     }
 }
