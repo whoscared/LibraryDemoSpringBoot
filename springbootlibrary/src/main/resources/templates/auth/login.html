@@ -7,17 +7,19 @@
 <body>
 
 <form name="f" method="post" action="/process_login">
-  <label for="username">Enter login</label>
-  <input type="text" name="username" id="username"/>
-  <br/>
-  <label for="password">Enter password</label>
-  <input type="password" name="password" id="password"/>
-  <br/>
-  <input type="submit" value="go"/>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-  <div th:if="${param.error}" style="color: brown">
-    wrong username or password
-  </div>
+    <label for="username">Enter login</label>
+    <input type="text" name="username" id="username"/>
+    <br/>
+    <label for="password">Enter password</label>
+    <input type="password" name="password" id="password"/>
+    <br/>
+    <input type="submit" value="go"/>
+
+    <div th:if="${param.error}" style="color: brown">
+        wrong username or password
+    </div>
 </form>
 
 </body>

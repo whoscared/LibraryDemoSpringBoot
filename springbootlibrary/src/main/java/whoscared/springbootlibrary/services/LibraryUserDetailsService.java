@@ -26,7 +26,7 @@ public class LibraryUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByLogin(username);
 
-        if (user.isEmpty()){
+        if (user.isEmpty()) {
             throw new UsernameNotFoundException("User not found");
         }
         return new LibraryUserDetails(user.get());

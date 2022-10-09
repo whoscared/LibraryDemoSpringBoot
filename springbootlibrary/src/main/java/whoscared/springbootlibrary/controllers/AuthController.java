@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import whoscared.springbootlibrary.models.User;
 import whoscared.springbootlibrary.services.RegistrationService;
-import whoscared.springbootlibrary.services.UserService;
 import whoscared.springbootlibrary.util.UserValidator;
 
 import javax.validation.Valid;
@@ -44,7 +43,7 @@ public class AuthController {
     public String checkData(@ModelAttribute("user") @Valid User libraryUser,
                             BindingResult bindingResult) {
         userValidator.validate(libraryUser, bindingResult);
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "/auth/register";
         }
         registrationService.register(libraryUser);

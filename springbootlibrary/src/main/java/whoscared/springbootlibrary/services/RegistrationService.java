@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import whoscared.springbootlibrary.models.User;
 import whoscared.springbootlibrary.repositories.UserRepository;
 
-import java.util.Optional;
-
 @Service
 public class RegistrationService {
 
@@ -20,7 +18,7 @@ public class RegistrationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void register(User newUser){
+    public void register(User newUser) {
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         userRepository.save(newUser);
     }

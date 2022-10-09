@@ -6,30 +6,30 @@
 </head>
 <body>
 <form th:method="POST" th:action="@{/auth/register}" th:object="${user}">
-  <label for="fullName">Name</label>
-  <input type="text" th:field="*{fullName}" id="fullName"/>
-  <div style="color:gray" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">error fullName</div>
+    <label for="fullName">Name</label>
+    <input type="text" th:field="*{fullName}" id="fullName"/>
+    <div style="color:gray" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">error fullName</div>
 
-  <br/>
+    <br/>
 
-  <label for="year">Year of birth</label>
-  <input type="text" th:field="*{year}" id="year"/>
-  <div style="color:gray" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">error year</div>
+    <label for="year">Year of birth</label>
+    <input type="text" th:field="*{year}" id="year"/>
+    <div style="color:gray" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">error year</div>
 
-  <br/>
+    <br/>
 
-  <label for="login">Create your login</label>
-  <input type="text" th:field="*{login}" id="login"/>
-  <div style="color:gray" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">error login</div>
+    <label for="login">Create your login</label>
+    <input type="text" th:field="*{login}" id="login"/>
+    <div style="color:gray" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">error login</div>
 
-  <br/>
+    <br/>
 
-  <label for="password">Create your password</label>
-  <input type="text" th:field="*{password}" id="password"/>
-  <div style="color:gray" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error password</div>
+    <label for="password">Create your password</label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <div style="color:gray" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error password</div>
 
-  <br/>
-  <input style="color: coral" type="submit" value="Create!"/>
+    <br/>
+    <input style="color: coral" type="submit" value="Create!"/>
 </form>
 </body>
 </html>

@@ -49,7 +49,7 @@ public class LibraryUserDetails implements UserDetails {
     }
 
     //needed to get data authentication user
-    public User getUser(){
+    public User getUser() {
         return this.libraryUser;
     }
 }

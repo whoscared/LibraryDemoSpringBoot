@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import whoscared.springbootlibrary.services.LibraryUserDetailsService;
 
@@ -28,10 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //all requests are authorized
         //read from top to bottom
-        http.csrf().disable()//disable protection against cross-site request forgery
-                .authorizeRequests()
+        http.authorizeRequests()
                 //all user have access for this pages
-                .antMatchers("/auth/login","/auth/register", "/error").permitAll()
+                .antMatchers("/auth/login", "/auth/register", "/error").permitAll()
                 //for all another pages have access only auth users
                 .anyRequest().authenticated()
                 //for go to settings for page with login

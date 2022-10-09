@@ -8,7 +8,7 @@
 <h1 style="color: darkolivegreen">Library books</h1>
 
 <div th:each="book : ${books}">
-  <a th:href="@{/book/{id}(id = ${book.getId()})}" th:text="${book.getTitle()} + ', '+ ${book.getYear()}"></a>
+    <a th:href="@{/book/{id}(id = ${book.getId()})}" th:text="${book.getTitle()} + ', '+ ${book.getYear()}"></a>
 </div>
 
 <br/>
@@ -18,13 +18,13 @@
 <br/>
 
 <div th:with="Url=(${sort} ? '/book?sort_by_year=true' : '/book')">
-<div th:if="${previousPage >= 0}">
-    <a th:href="@{${Url}(page = ${previousPage},count =${count})}"> << previous page</a>
-</div>
+    <div th:if="${previousPage >= 0}">
+        <a th:href="@{${Url}(page = ${previousPage},count =${count})}"> << previous page</a>
+    </div>
 
-<div th:if="${nextPage}">
-    <a th:href="@{${Url}(page=${nextPage},count=${count})}"> >> next page</a>
-</div>
+    <div th:if="${nextPage}">
+        <a th:href="@{${Url}(page=${nextPage},count=${count})}"> >> next page</a>
+    </div>
 </div>
 
 </body>

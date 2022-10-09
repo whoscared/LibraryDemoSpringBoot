@@ -7,6 +7,9 @@
 <body>
 <h1 style="color: lightpink">hello!</h1>
 <br/>
-<a style="color: black" href="/logout">logout</a>
+<form th:action="@{/logout}" th:method="post">
+    <input style="color: black" type="submit" value="logout"/>
+</form>
+
 </body>
 </html>
