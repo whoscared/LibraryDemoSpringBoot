@@ -29,7 +29,7 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         User user = (User)target; //down-casting
-        //use service if person not found -> exception
+        //use service if user not found -> exception
         // !!it is undesirable to rely on exceptions
         Optional<User> findUser = userService.findByLogin(user.getLogin());
         if (findUser.isPresent()){

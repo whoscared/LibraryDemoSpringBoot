@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Library books</title>
@@ -14,6 +16,10 @@
     <a th:href="@{/book/{id}(id = ${book.getId()})}" th:text="${book.getTitle()} + ', ' + ${book.getYear()}"></a>
 </div>
 <br/>
-<a style="color: black" href="/book/new">Add new book</a>
+<!-- with this "if" reference can see only admin-->
+<div th:if="${#authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ADMIN')}">
+    <a style="color: black" href="/book/new">Add new book</a>
+</div>
+
 </body>
 </html>

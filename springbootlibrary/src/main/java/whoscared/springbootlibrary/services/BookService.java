@@ -35,6 +35,7 @@ public class BookService {
 
     @Transactional
     public void addBook(Book book) {
+        book.setTime(null);
         bookRepository.save(book);
     }
 

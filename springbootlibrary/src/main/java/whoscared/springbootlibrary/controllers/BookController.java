@@ -78,14 +78,14 @@ public class BookController {
     @GetMapping("/{id}")
     public String oneBook(@PathVariable("id") int id,
                           Model model,
-                          @ModelAttribute("person") User user) {
+                          @ModelAttribute("user") User user) {
         Book currentBook = bookService.oneBook(id);
         model.addAttribute("book", currentBook);
         User bookOwner = userService.getOwnerByBook(currentBook);
         if (bookOwner != null) {
             model.addAttribute("owner", bookOwner);
         } else {
-            model.addAttribute("people", userService.findAll());
+            model.addAttribute("users", userService.findAll());
         }
         return "/book/id";
     }

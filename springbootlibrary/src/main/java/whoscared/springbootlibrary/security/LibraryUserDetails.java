@@ -1,10 +1,12 @@
 package whoscared.springbootlibrary.security;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import whoscared.springbootlibrary.models.User;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class LibraryUserDetails implements UserDetails {
     private final User libraryUser;
@@ -15,7 +17,7 @@ public class LibraryUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singletonList(new SimpleGrantedAuthority(libraryUser.getRole().toString()));
     }
 
     @Override

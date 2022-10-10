@@ -16,13 +16,13 @@
     </form>
 </div>
 
-<div th:if="${people}">
+<div th:if="${users}">
     <form th:method="PATCH" th:action="@{/book/{id}/addowner(id = ${book.getId()})}">
         <span>Choose book owner</span>
         <br/>
-        <label for="people">Users list</label>
-        <select th:object="${user}" th:field="*{id}" id="people">
-            <option th:each="user : ${people}" th:value="${user.getId()}"
+        <label for="users">Users list</label>
+        <select th:object="${user}" th:field="*{id}" id="users">
+            <option th:each="user : ${users}" th:value="${user.getId()}"
                     th:text="${user.getFullName()}">
             </option>
         </select>

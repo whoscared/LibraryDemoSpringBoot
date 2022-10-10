@@ -30,6 +30,10 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @OneToMany(mappedBy = "owner")
     private List<Book> books;
 
@@ -68,6 +72,14 @@ public class User {
 
     public String getLogin() {
         return login;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public void setLogin(String login) {

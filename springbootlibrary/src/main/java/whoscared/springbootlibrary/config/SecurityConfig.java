@@ -3,6 +3,7 @@ package whoscared.springbootlibrary.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -11,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import whoscared.springbootlibrary.services.LibraryUserDetailsService;
 
 @EnableWebSecurity
+// authorization at the level methods
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final LibraryUserDetailsService detailsService;
@@ -27,11 +30,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //all requests are authorized
         //read from top to bottom
+        //more specific rules come before more general ones
         http.authorizeRequests()
-                //all user have access for this pages
+                .antMatchers("/users", "/book/add", "/book/new").hasRole("ADMIN")
+                //all user (guests too) have access for this pages
                 .antMatchers("/auth/login", "/auth/register", "/error").permitAll()
-                //for all another pages have access only auth users
-                .anyRequest().authenticated()
+                //for all any request have access only these users:
+                .anyRequest().hasAnyRole("USER", "ADMIN", "LIBRARIAN")
                 //for go to settings for page with login
                 .and()
                 //for page with authentication

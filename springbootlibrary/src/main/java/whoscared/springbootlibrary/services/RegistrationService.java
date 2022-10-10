@@ -3,6 +3,7 @@ package whoscared.springbootlibrary.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import whoscared.springbootlibrary.models.Role;
 import whoscared.springbootlibrary.models.User;
 import whoscared.springbootlibrary.repositories.UserRepository;
 
@@ -20,6 +21,7 @@ public class RegistrationService {
 
     public void register(User newUser) {
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        newUser.setRole(Role.ROLE_USER);
         userRepository.save(newUser);
     }
 }
